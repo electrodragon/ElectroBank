@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">ElectroBank</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_registered_user">Welcome %1$s\ntoElectroBank!</string>
+    <string name="welcome_dashboard_user">Welcome <b>%1$s</b></string>
+    <string name="your_acc_no_is">Your account number is \n%1$s</string>
+    <string name="dollar_amount">$%1$d</string>
+    <string name="notify_deposit">Thanks for depositing\n%1$d!</string>
+    <string name="notify_withdraw">Here is your \n%1$d!</string>
+    <string name="you_are_sending_money_to_user">You\'re sending money $%1$d to %2$s</string>
 </resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/black"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/sending_to"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"
+        android:padding="8dp"
+        android:layout_alignParentTop="true"
+        android:text="You are sending to "
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_below="@id/sending_to"
+        android:id="@+id/password_view_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter your password to deposit"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_edittext"
+            android:drawableStart="@drawable/dollar"
+            android:drawablePadding="10dp"
+            android:hint="Password " />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/depositOrWithdrawBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/purple_200"
+        android:text="deposit"
+        android:textColor="@color/white"
+        android:layout_below="@id/password_view_group" />
+</RelativeLayout>
