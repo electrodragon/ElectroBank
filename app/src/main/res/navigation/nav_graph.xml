@@ -15,9 +15,70 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.electrodragon.electrobank.view.fragments.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.electrodragon.electrobank.view.fragments.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_welcomeRegisterUserFragment"
+            app:destination="@id/welcomeRegisterUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeRegisterUserFragment"
+        android:name="com.electrodragon.electrobank.view.fragments.WelcomeRegisterUserFragment"
+        android:label="fragment_welcome_register_user"
+        tools:layout="@layout/fragment_welcome_register_user" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.electrodragon.electrobank.view.fragments.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_sendMoneyFragment"
+            app:destination="@id/sendMoneyFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_depositOrWithdrawFragment"
+            app:destination="@id/depositOrWithdrawFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendMoneyFragment"
+        android:name="com.electrodragon.electrobank.view.fragments.SendMoneyFragment"
+        android:label="fragment_send_money"
+        tools:layout="@layout/fragment_send_money" />
+    <fragment
+        android:id="@+id/depositOrWithdrawFragment"
+        android:name="com.electrodragon.electrobank.view.fragments.DepositOrWithdrawFragment"
+        android:label="fragment_deposit_or_withdraw"
+        tools:layout="@layout/fragment_deposit_or_withdraw" >
+        <action
+            android:id="@+id/action_depositOrWithdrawFragment_to_depositOrWithdrawNotifyFragment"
+            app:destination="@id/depositOrWithdrawNotifyFragment"
+            app:popUpTo="@id/depositOrWithdrawFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/depositOrWithdrawNotifyFragment"
+        android:name="com.electrodragon.electrobank.view.fragments.DepositOrWithdrawNotifyFragment"
+        android:label="fragment_deposit_or_withdraw_notify"
+        tools:layout="@layout/fragment_deposit_or_withdraw_notify" />
 </navigation>

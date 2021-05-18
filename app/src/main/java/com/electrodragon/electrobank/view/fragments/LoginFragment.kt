@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.electrodragon.electrobank.R
 import com.electrodragon.electrobank.custom_parents.fragment.PapaFragment
 import com.electrodragon.electrobank.databinding.FragmentLoginBinding
 import com.electrodragon.electrobank.model.viewmodel.fragments.LoginFragmentViewModel
@@ -19,7 +21,9 @@ class LoginFragment: PapaFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         mBinding = FragmentLoginBinding.inflate(layoutInflater)
 
-        shortToast(mViewModel.abc)
+        mBinding.signUpBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
 
         return mBinding.root
     }
