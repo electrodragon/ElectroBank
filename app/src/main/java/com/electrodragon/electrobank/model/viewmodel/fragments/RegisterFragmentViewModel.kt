@@ -2,6 +2,8 @@ package com.electrodragon.electrobank.model.viewmodel.fragments
 
 import android.app.Application
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.electrodragon.electrobank.custom_parents.viewmodel.PapaViewModel
 import com.electrodragon.electrobank.model.room_database.entities.UserEntity
 import com.electrodragon.electrobank.repository.ElectroRepository
@@ -19,18 +21,32 @@ class RegisterFragmentViewModel @Inject constructor(
     repository: ElectroRepository
 ) : PapaViewModel(app, prefsController, repository) {
 
+    enum class UserRegistrationState { IDLE, SUCCESS, FAIL }
+    val userRegistrationState = MutableLiveData(UserRegistrationState.IDLE)
+
+    fun getUserWithEmail(email: String): LiveData<UserEntity> {
+        return repository.getUserWithEmail(email)
+    }
+
+    var firstName = ""
+    var accountNumber = ""
+
     fun saveUser(user: UserEntity) {
+        this.firstName = user.firstName
+        this.accountNumber = user.accountNumber
         Observable.just(user)
             .filter {
-                repository.createNewUser(it)
+                if (repository.getUserWithEmail(it.email).value == null) {
+                    repository.createNewUser(it)
+                }
                 true
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d(TAG, "saveUser: Used Saved Successfully!")
+                userRegistrationState.value = UserRegistrationState.SUCCESS
             }, {
-                Log.d(TAG, "saveUser: Used Saving Failed MayBe!")
+                userRegistrationState.value = UserRegistrationState.FAIL
             }, {
                 Log.d(TAG, "saveUser: Used Saving Process Completed!")
             })

@@ -41,13 +41,22 @@
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_welcomeRegisterUserFragment"
-            app:destination="@id/welcomeRegisterUserFragment" />
+            app:destination="@id/welcomeRegisterUserFragment"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/welcomeRegisterUserFragment"
         android:name="com.electrodragon.electrobank.view.fragments.WelcomeRegisterUserFragment"
         android:label="fragment_welcome_register_user"
-        tools:layout="@layout/fragment_welcome_register_user" />
+        tools:layout="@layout/fragment_welcome_register_user" >
+        <argument
+            android:name="userFirstName"
+            app:argType="string" />
+        <argument
+            android:name="accountNumber"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.electrodragon.electrobank.view.fragments.DashboardFragment"

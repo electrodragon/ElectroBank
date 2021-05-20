@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.electrodragon.electrobank.R
 import com.electrodragon.electrobank.custom_parents.fragment.PapaFragment
 import com.electrodragon.electrobank.databinding.FragmentRegisterBinding
 import com.electrodragon.electrobank.model.room_database.entities.UserEntity
 import com.electrodragon.electrobank.model.viewmodel.fragments.RegisterFragmentViewModel
+import com.electrodragon.electrobank.model.viewmodel.fragments.RegisterFragmentViewModel.*
+import com.electrodragon.electrobank.view.activities.MainActivity
+import com.electrodragon.electrobank.view.activities.MainActivity_GeneratedInjector
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -20,6 +24,18 @@ class RegisterFragment : PapaFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentRegisterBinding.inflate(layoutInflater)
+
+        mViewModel.userRegistrationState.observe(viewLifecycleOwner) {
+            if (it == UserRegistrationState.SUCCESS) {
+                findNavController().navigate(
+                    RegisterFragmentDirections.actionRegisterFragmentToWelcomeRegisterUserFragment(
+                        mViewModel.firstName, mViewModel.accountNumber
+                    ))
+            }
+            if (it == UserRegistrationState.FAIL) {
+                shortToast("Fail!")
+            }
+        }
 
         mBinding.registerBtn.setOnClickListener {
             val firstName = mBinding.firstNameEditText.text.toString().trim()
@@ -40,13 +56,19 @@ class RegisterFragment : PapaFragment() {
                     requestFocusWithError(mBinding.paswordEdittxt, "Please enter your password")
                 }
                 else -> {
-                    mViewModel.saveUser(UserEntity(
-                        firstName,
-                        lastName,
-                        email,
-                        password,
-                        System.currentTimeMillis().toString()
-                    ))
+                    mViewModel.getUserWithEmail(email).observe(viewLifecycleOwner) {
+                        if (it == null) {
+                            mViewModel.saveUser(UserEntity(
+                                firstName,
+                                lastName,
+                                email,
+                                password,
+                                System.currentTimeMillis().toString()
+                            ))
+                        } else {
+                            shortToast("User Already Exist!")
+                        }
+                    }
                 }
             }
         }
