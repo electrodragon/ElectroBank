@@ -15,4 +15,10 @@ interface UserDao {
 
     @Query("SELECT * FROM bank_user WHERE email=:email")
     fun getUserWithEmail(email: String): LiveData<UserEntity>
+
+    @Query("SELECT * FROM bank_user WHERE email=:email or account_number=:accountNumber")
+    fun getUserWithEmailOrAccountNumber(email: String, accountNumber: String): UserEntity
+
+    @Query("SELECT * FROM bank_user WHERE id=:id")
+    fun getUserWithId(id: Int): LiveData<UserEntity>
 }

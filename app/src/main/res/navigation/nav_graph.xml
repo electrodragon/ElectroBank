@@ -68,6 +68,11 @@
         <action
             android:id="@+id/action_dashboardFragment_to_depositOrWithdrawFragment"
             app:destination="@id/depositOrWithdrawFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/sendMoneyFragment"

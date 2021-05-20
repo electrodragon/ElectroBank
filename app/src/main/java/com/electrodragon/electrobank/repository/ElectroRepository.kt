@@ -15,4 +15,11 @@ class ElectroRepository @Inject constructor(private val userDao: UserDao) {
         return userDao.getUserWithEmail(email)
     }
 
+    fun getUserWithEmailOrAccountNumber(email: String, accountNumber: String): UserEntity {
+        return userDao.getUserWithEmailOrAccountNumber(email, accountNumber)
+    }
+
+    fun getUserWithId(id: Int): LiveData<UserEntity> {
+        return userDao.getUserWithId(id)
+    }
 }
