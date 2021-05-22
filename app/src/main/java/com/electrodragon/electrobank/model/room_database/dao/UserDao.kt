@@ -24,4 +24,7 @@ interface UserDao {
 
     @Query("UPDATE bank_user SET amount=:amount WHERE id=:id")
     fun setAmount(amount: Double, id: Int)
+
+    @Query("SELECT * FROM bank_user WHERE account_number=:accountNumber")
+    fun getUserWithAccountNumber(accountNumber: String): LiveData<UserEntity>
 }

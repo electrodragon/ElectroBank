@@ -26,4 +26,8 @@ class ElectroRepository @Inject constructor(private val userDao: UserDao) {
     fun setAmount(amount: Double, id: Int) {
         userDao.setAmount(amount, id)
     }
+
+    fun getUserWithAccountNumber(accountNumber: String): LiveData<UserEntity> {
+        return userDao.getUserWithAccountNumber(accountNumber)
+    }
 }

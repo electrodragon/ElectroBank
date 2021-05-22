@@ -45,6 +45,10 @@ class DashboardFragment : PapaFragment() {
             )
         }
 
+        mBinding.sendBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_sendMoneyFragment)
+        }
+
         mBinding.logoutBtn.setOnClickListener {
             mViewModel.logoutUser()
         }
