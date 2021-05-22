@@ -30,7 +30,7 @@
         android:background="@drawable/back_edittext"
         android:drawableStart="@drawable/dollar"
         android:drawablePadding="10dp"
-        android:ems="10"
+        android:inputType="numberDecimal"
         android:hint="Enter amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

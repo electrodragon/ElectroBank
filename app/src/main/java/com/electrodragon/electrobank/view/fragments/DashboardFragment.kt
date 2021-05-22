@@ -22,7 +22,7 @@ class DashboardFragment : PapaFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         mBinding = FragmentDashboardBinding.inflate(layoutInflater)
 
-        mViewModel.getUser().observe(viewLifecycleOwner) {
+        mViewModel.getLoggedInUser().observe(viewLifecycleOwner) {
             mBinding.totalAmount.text = getString(R.string.dollar_amount, it.amount.toString())
             mBinding.welcomeMsg.text = getString(R.string.welcome_dashboard_user, it.firstName)
         }
@@ -31,6 +31,18 @@ class DashboardFragment : PapaFragment() {
             if (it == LogoutState.LOGGED_OUT) {
                 findNavController().navigate(R.id.action_dashboardFragment_to_loginFragment)
             }
+        }
+
+        mBinding.depositBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_depositOrWithdrawFragment)
+        }
+
+        mBinding.withdrawBtn.setOnClickListener {
+            findNavController().navigate(
+                DashboardFragmentDirections
+                    .actionDashboardFragmentToDepositOrWithdrawFragment()
+                    .setDepositMode(false)
+            )
         }
 
         mBinding.logoutBtn.setOnClickListener {

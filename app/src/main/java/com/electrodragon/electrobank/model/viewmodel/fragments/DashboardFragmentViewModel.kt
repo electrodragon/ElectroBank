@@ -22,10 +22,6 @@ class DashboardFragmentViewModel @Inject constructor(
     repository: ElectroRepository
 ) : PapaViewModel(app, prefsController, repository) {
 
-    fun getUser(): LiveData<UserEntity> {
-        return repository.getUserWithId(prefsController.getUserId()!!)
-    }
-
     enum class LogoutState { IDLE, LOGGED_OUT }
     val logoutState = MutableLiveData(LogoutState.IDLE)
 
